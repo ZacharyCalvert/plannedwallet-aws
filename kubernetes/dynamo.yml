@@ -1,0 +1,65 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pw-vol-dynamodb
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /data/pv01/
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-dynamodb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynamodb
+  labels:
+    app: dynamodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamodb
+  template:
+    metadata:
+      labels:
+        app: dynamodb
+    spec:
+      containers:
+      - name: dynamodb
+        image: cnadiminti/dynamodb-local:2017-02-16
+        volumeMounts:
+        - mountPath: /dynamodb_local_db
+          name: dynamo-pv
+        ports:
+        - containerPort: 8000
+      volumes:
+      - name: dynamo-pv
+        persistentVolumeClaim:
+          claimName: pvc-dynamodb
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dynamodb-service
+spec:
+  selector:
+    app: dynamodb
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
