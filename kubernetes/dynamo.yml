@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: dynamodb
-        image: cnadiminti/dynamodb-local:2017-02-16
+        image: cnadiminti/dynamodb-local:latest
         volumeMounts:
         - mountPath: /dynamodb_local_db
           name: dynamo-pv
