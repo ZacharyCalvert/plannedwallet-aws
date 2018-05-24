@@ -1,0 +1,10 @@
+management:
+  endpoints:
+    web:
+      base-path: /admin
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+    metrics:
+      enabled: true
