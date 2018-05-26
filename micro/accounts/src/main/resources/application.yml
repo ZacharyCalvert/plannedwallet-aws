@@ -3,11 +3,7 @@
 ##########################################################################################
 # Dynamo DB configuration
 ##########################################################################################
-amazon.dynamodb.endpoint: http://192.168.99.100:32219
-amazon.aws.accesskey: key
-amazon.aws.secretkey: key2
-
-# -> TODO https://github.com/derjust/spring-data-dynamodb
+amazon.dynamodb.endpoint: http://127.0.0.1:8000
 
 ##########################################################################################
 # Actuator configuration
@@ -15,7 +11,7 @@ amazon.aws.secretkey: key2
 management:
   endpoints:
     web:
-      base-path: /admin
+      base-path: /actuator
     enabled-by-default: false
   endpoint:
     health:

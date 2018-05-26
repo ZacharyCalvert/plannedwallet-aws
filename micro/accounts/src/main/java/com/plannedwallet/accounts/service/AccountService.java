@@ -3,7 +3,6 @@ package com.plannedwallet.accounts.service;
 import com.plannedwallet.accounts.models.Account;
 import com.plannedwallet.accounts.models.UserAccounts;
 import com.plannedwallet.accounts.repositories.AccountsRepository;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +39,10 @@ public class AccountService {
       userAccounts = new UserAccounts();
       userAccounts.setUserId("userid");
     }
-    List<HashMap<String, String>> existingAccounts = userAccounts.getAccounts();
-    if (existingAccounts == null) {
-      existingAccounts = new ArrayList<>();
-      userAccounts.setAccounts(existingAccounts);
+    List<HashMap<String, String>> accounts = userAccounts.getAccounts();
+    if (accounts == null) {
+      accounts = new ArrayList<>();
+      userAccounts.setAccounts(accounts);
     }
     HashMap<String, String> accountMap = new HashMap<>();
     String id = UUID.randomUUID().toString();
@@ -52,7 +51,7 @@ public class AccountService {
     Account result = new Account();
     result.setAccountId(id);
     result.setName(accountName);
-    existingAccounts.add(accountMap);
+    accounts.add(accountMap);
     accountsRepository.save(userAccounts);
     return result;
   }

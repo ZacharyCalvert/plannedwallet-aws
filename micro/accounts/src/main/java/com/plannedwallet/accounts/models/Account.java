@@ -8,12 +8,10 @@ public class Account {
 
   private String name;
 
-  @DynamoDBAttribute
   public String getAccountId() {
     return accountId;
   }
 
-  @DynamoDBAttribute
   public String getName() {
     return name;
   }
