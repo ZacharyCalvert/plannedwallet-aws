@@ -17,6 +17,6 @@ export DYN_NODE_PORT=$(kubectl get services/dynamodb -o go-template='{{(index .s
 export DYNAMO_URL=http://$(minikube ip):$DYN_NODE_PORT
 echo "Dynamo URL: $DYNAMO_URL"
 
-aws dynamodb create-table --table-name pwAccounts --attribute-definitions AttributeName=userId,AttributeType=S  --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url $DYNAMO_URL
+aws dynamodb create-table --table-name UserAccounts --attribute-definitions AttributeName=userId,AttributeType=S  --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url $DYNAMO_URL
 
 aws dynamodb list-tables --endpoint-url $DYNAMO_URL --output json

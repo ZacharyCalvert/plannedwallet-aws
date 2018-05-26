@@ -26,5 +26,13 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("com.github.spring-data-dynamodb:spring-data-dynamodb:5.0.2")
+
+	// Util
+	compile("org.apache.commons:commons-lang3:3.7")
+
+	// Dynamo bindings
+	compile("com.amazonaws:aws-java-sdk-dynamodb:1.11.335")
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
